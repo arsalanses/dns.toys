@@ -13,7 +13,8 @@ ARG APP_VERSION
 WORKDIR /app/
 ADD . .
 
-RUN GO111MODULE=on CGO_ENABLED=0 GOOS=${TARGETOS} GOARCH=${TARGETARCH} go build -ldflags="-s -w -X 'main.version=${APP_VERSION}'" -o dnstoys main.go
+# RUN GO111MODULE=on CGO_ENABLED=0 GOOS=${TARGETOS} GOARCH=${TARGETARCH} go build -ldflags="-s -w -X 'main.version=${APP_VERSION}'" -o dnstoys main.go
+RUN GO111MODULE=on CGO_ENABLED=0 GOOS=${TARGETOS} GOARCH=${TARGETARCH} go build -ldflags="-s -w -X 'main.version=latest'" -o dnstoys main.go
 
 FROM --platform=${TARGETPLATFORM:-linux/amd64} scratch
 
